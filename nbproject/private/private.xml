@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/evand/OneDrive/Dokumen/PBO%20DOSEN/Siasat/src/siasat/komponen/HeaderPanel.java</file>
+            <file>file:/C:/Users/evand/OneDrive/Dokumen/PBO%20DOSEN/Siasat/src/siasat/komponen/LoginFormPanel.java</file>
+            <file>file:/C:/Users/evand/OneDrive/Dokumen/PBO%20DOSEN/Siasat/src/siasat/komponen/FooterPanel.java</file>
+            <file>file:/C:/Users/evand/OneDrive/Dokumen/PBO%20DOSEN/Siasat/src/siasat/SiasatLoginUI.java</file>
+            <file>file:/C:/Users/evand/OneDrive/Dokumen/PBO%20DOSEN/Siasat/src/siasat/DashboardUI.java</file>
+            <file>file:/C:/Users/evand/OneDrive/Dokumen/PBO%20DOSEN/Siasat/src/siasat/model/User.java</file>
+            <file>file:/C:/Users/evand/OneDrive/Dokumen/PBO%20DOSEN/Siasat/src/siasat/model/Mahasiswa.java</file>
+            <file>file:/C:/Users/evand/OneDrive/Dokumen/PBO%20DOSEN/Siasat/src/siasat/model/MataKuliah.java</file>
+            <file>file:/C:/Users/evand/OneDrive/Dokumen/PBO%20DOSEN/Siasat/src/siasat/model/Nilai.java</file>
+            <file>file:/C:/Users/evand/OneDrive/Dokumen/PBO%20DOSEN/Siasat/src/siasat/database/DatabaseConnection.java</file>
+            <file>file:/C:/Users/evand/OneDrive/Dokumen/PBO%20DOSEN/Siasat/src/siasat/database/UserDAO.java</file>
+            <file>file:/C:/Users/evand/OneDrive/Dokumen/PBO%20DOSEN/Siasat/src/siasat/database/MahasiswaDAO.java</file>
+            <file>file:/C:/Users/evand/OneDrive/Dokumen/PBO%20DOSEN/Siasat/src/siasat/database/MataKuliahDAO.java</file>
+            <file>file:/C:/Users/evand/OneDrive/Dokumen/PBO%20DOSEN/Siasat/src/siasat/model/Dosen.java</file>
+            <file>file:/C:/Users/evand/OneDrive/Dokumen/PBO%20DOSEN/Siasat/src/siasat/database/DosenDAO.java</file>
+        </group>
+    </open-files>
+</project-private>
