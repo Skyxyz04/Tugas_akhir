@@ -30,7 +30,7 @@ public class DashboardFrame extends JFrame {
         // Menu Panel
         JPanel menuPanel = createMenuPanel();
         
-        // Content Panel
+        // Content Panel - HANYA tampilan selamat datang
         JPanel contentPanel = createContentPanel();
         
         // Add to frame
@@ -62,11 +62,13 @@ public class DashboardFrame extends JFrame {
     }
     
     private JPanel createMenuPanel() {
-        JPanel menuPanel = new JPanel(new GridLayout(6, 1, 10, 10));
+        // Ubah GridLayout menjadi 7,1 untuk menampung menu keuangan
+        JPanel menuPanel = new JPanel(new GridLayout(7, 1, 10, 10));
         menuPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         menuPanel.setPreferredSize(new Dimension(250, getHeight()));
         
-        String[] menuItems = {"📝 KRS", "📊 KHS", "📑 Transkrip", "🕐 Jadwal", "👤 Data Pribadi", "🚪 Logout"};
+        // Tambahkan menu Keuangan
+        String[] menuItems = {"📝 KRS", "📊 KHS", "📑 Transkrip", "🕐 Jadwal", "💰 Keuangan", "👤 Data Pribadi", "🚪 Logout"};
         
         for (int i = 0; i < menuItems.length; i++) {
             JButton button = new JButton(menuItems[i]);
@@ -86,17 +88,23 @@ public class DashboardFrame extends JFrame {
     private JPanel createContentPanel() {
         JPanel contentPanel = new JPanel(new BorderLayout());
         contentPanel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
+        contentPanel.setBackground(Color.WHITE);
         
+        // HANYA tampilan selamat datang saja
         JLabel lblWelcome = new JLabel(
-            "<html><center><h1>Selamat Datang di SIASAT UKSW!</h1>" +
-            "<p style='font-size:16px; margin-top:20px;'>" +
-            "<strong>NIM:</strong> " + mahasiswa.getNim() + "<br>" +
-            "<strong>Nama:</strong> " + mahasiswa.getNama() + "<br>" +
-            "<strong>Program Studi:</strong> " + mahasiswa.getProgramStudi() + "<br>" +
-            "<strong>Fakultas:</strong> " + mahasiswa.getFakultas() + "<br>" +
+            "<html><center>" +
+            "<h1 style='color: #2c3e50; margin-bottom: 30px;'>Selamat Datang di SIASAT UKSW!</h1>" +
+            "<div style='text-align: center; font-size:16px; background: #f8f9fa; padding: 30px; border-radius: 10px; border: 1px solid #ddd; max-width: 600px; margin: 0 auto;'>" +
+            "<strong>NIM:</strong> " + mahasiswa.getNim() + "<br><br>" +
+            "<strong>Nama:</strong> " + mahasiswa.getNama() + "<br><br>" +
+            "<strong>Program Studi:</strong> " + mahasiswa.getProgramStudi() + "<br><br>" +
+            "<strong>Fakultas:</strong> " + mahasiswa.getFakultas() + "<br><br>" +
             "<strong>Angkatan:</strong> " + mahasiswa.getAngkatan() + "<br><br>" +
+            "<hr style='margin: 20px 0;'>" +
+            "<p style='color: #666; font-style: italic;'>" +
             "Silakan pilih menu di sebelah kiri untuk mengakses fitur-fitur SIASAT." +
-            "</p></center></html>", 
+            "</p>" +
+            "</div></center></html>", 
             SwingConstants.CENTER
         );
         
@@ -128,12 +136,17 @@ public class DashboardFrame extends JFrame {
                 new JadwalFrame(mahasiswa).setVisible(true);
                 break;
                 
-            case 4: // Data Pribadi
+            case 4: // Keuangan
+                System.out.println("Membuka Keuangan Frame...");
+                new KeuanganFrame(mahasiswa).setVisible(true);
+                break;
+                
+            case 5: // Data Pribadi
                 System.out.println("Membuka Data Pribadi Frame...");
                 new DataPribadiFrame(mahasiswa).setVisible(true);
                 break;
                 
-            case 5: // Logout
+            case 6: // Logout
                 int confirm = JOptionPane.showConfirmDialog(this, 
                     "Apakah Anda yakin ingin logout?", "Konfirmasi Logout", 
                     JOptionPane.YES_NO_OPTION);
