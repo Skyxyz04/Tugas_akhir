@@ -6,8 +6,8 @@ import Model.KRS;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import Ui.PembayaranMahasiswaFrame;
+import Ui.LoginFrame;
 import java.util.List;
 
 public class MahasiswaDashboardFrame extends JFrame {
@@ -38,10 +38,14 @@ public class MahasiswaDashboardFrame extends JFrame {
         // Header
         JPanel headerPanel = createHeaderPanel();
         
+        // Menu Panel - BARU DITAMBAHKAN
+        JPanel menuPanel = createMenuPanel();
+        
         // KRS Panel
         JPanel krsPanel = createKRSPanel();
         
         mainPanel.add(headerPanel, BorderLayout.NORTH);
+        mainPanel.add(menuPanel, BorderLayout.WEST); // BARU DITAMBAHKAN
         mainPanel.add(krsPanel, BorderLayout.CENTER);
         
         add(mainPanel);
@@ -88,6 +92,86 @@ public class MahasiswaDashboardFrame extends JFrame {
         headerPanel.add(btnLogout, BorderLayout.EAST);
         
         return headerPanel;
+    }
+    
+    // BARU DITAMBAHKAN: Menu Panel untuk navigasi
+    private JPanel createMenuPanel() {
+        JPanel menuPanel = new JPanel();
+        menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
+        menuPanel.setBorder(BorderFactory.createTitledBorder("Menu"));
+        menuPanel.setPreferredSize(new Dimension(200, 0));
+        menuPanel.setBackground(Color.WHITE);
+        
+        // Button Dashboard
+        JButton btnDashboard = createMenuButton("📊 Dashboard", new Color(41, 128, 185));
+        btnDashboard.addActionListener(e -> {
+            // Already in dashboard, just refresh
+            loadKRSData();
+        });
+        
+        // Button KRS
+        JButton btnKRS = createMenuButton("📚 KRS", new Color(52, 152, 219));
+        btnKRS.addActionListener(e -> {
+            // Focus ke bagian KRS yang sudah ada
+            JOptionPane.showMessageDialog(this, 
+                "Anda sedang berada di menu KRS", "Info", JOptionPane.INFORMATION_MESSAGE);
+        });
+        
+        // Button Pembayaran - INI YANG DITAMBAHKAN
+        JButton btnPembayaran = createMenuButton("💰 Pembayaran", new Color(39, 174, 96));
+        btnPembayaran.addActionListener(e -> {
+            new PembayaranMahasiswaFrame(mahasiswa).setVisible(true);
+        });
+        
+        // Button Nilai
+        JButton btnNilai = createMenuButton("📈 Nilai", new Color(230, 126, 34));
+        btnNilai.addActionListener(e -> {
+            JOptionPane.showMessageDialog(this, 
+                "Fitur nilai akan segera tersedia", "Info", JOptionPane.INFORMATION_MESSAGE);
+        });
+        
+        // Button Jadwal
+        JButton btnJadwal = createMenuButton("📅 Jadwal", new Color(155, 89, 182));
+        btnJadwal.addActionListener(e -> {
+            JOptionPane.showMessageDialog(this, 
+                "Fitur jadwal akan segera tersedia", "Info", JOptionPane.INFORMATION_MESSAGE);
+        });
+        
+        // Button Profil
+        JButton btnProfil = createMenuButton("👤 Profil", new Color(52, 73, 94));
+        btnProfil.addActionListener(e -> {
+            showProfilDialog();
+        });
+        
+        menuPanel.add(Box.createVerticalStrut(10));
+        menuPanel.add(btnDashboard);
+        menuPanel.add(Box.createVerticalStrut(10));
+        menuPanel.add(btnKRS);
+        menuPanel.add(Box.createVerticalStrut(10));
+        menuPanel.add(btnPembayaran); // TAMBAH INI
+        menuPanel.add(Box.createVerticalStrut(10));
+        menuPanel.add(btnNilai);
+        menuPanel.add(Box.createVerticalStrut(10));
+        menuPanel.add(btnJadwal);
+        menuPanel.add(Box.createVerticalStrut(10));
+        menuPanel.add(btnProfil);
+        menuPanel.add(Box.createVerticalGlue());
+        
+        return menuPanel;
+    }
+    
+    // BARU DITAMBAHKAN: Method untuk membuat button menu
+    private JButton createMenuButton(String text, Color color) {
+        JButton button = new JButton(text);
+        button.setAlignmentX(Component.LEFT_ALIGNMENT);
+        button.setBackground(color);
+        button.setForeground(Color.WHITE);
+        button.setFont(new Font("Arial", Font.BOLD, 12));
+        button.setFocusPainted(false);
+        button.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15));
+        button.setMaximumSize(new Dimension(180, 40));
+        button.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        return button;
     }
     
     private JPanel createKRSPanel() {
@@ -241,6 +325,39 @@ public class MahasiswaDashboardFrame extends JFrame {
                 JOptionPane.showMessageDialog(this, "Gagal submit KRS!");
             }
         }
+    }
+    
+    // BARU DITAMBAHKAN: Method untuk menampilkan dialog profil
+    private void showProfilDialog() {
+        JDialog dialog = new JDialog(this, "Profil Mahasiswa", true);
+        dialog.setSize(400, 300);
+        dialog.setLocationRelativeTo(this);
+        
+        JPanel panel = new JPanel(new GridLayout(6, 2, 10, 10));
+        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        
+        panel.add(new JLabel("NIM:"));
+        panel.add(new JLabel(mahasiswa.getNim()));
+        panel.add(new JLabel("Nama:"));
+        panel.add(new JLabel(mahasiswa.getNama()));
+        panel.add(new JLabel("Program Studi:"));
+        panel.add(new JLabel(mahasiswa.getProgramStudi()));
+        panel.add(new JLabel("Fakultas:"));
+        panel.add(new JLabel(mahasiswa.getFakultas()));
+        panel.add(new JLabel("Angkatan:"));
+        panel.add(new JLabel(String.valueOf(mahasiswa.getAngkatan())));
+        panel.add(new JLabel("Status:"));
+        panel.add(new JLabel(mahasiswa.getStatus()));
+        
+        JButton btnClose = new JButton("Tutup");
+        btnClose.addActionListener(e -> dialog.dispose());
+        
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(btnClose);
+        
+        dialog.add(panel, BorderLayout.CENTER);
+        dialog.add(buttonPanel, BorderLayout.SOUTH);
+        dialog.setVisible(true);
     }
     
     private void logout() {
